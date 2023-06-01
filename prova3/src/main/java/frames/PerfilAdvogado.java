@@ -17,15 +17,18 @@ public class PerfilAdvogado extends javax.swing.JFrame {
      * Creates new form PerfilAdvogado
      * @param advogado
      */
+    private final Advogado advogado;
+    String nome_oficial;
+    String codigo_oficial;
+    
     public PerfilAdvogado(Advogado advogado){
+        this.advogado = advogado;
         initComponents();
-        editavel();
-        String nome = advogado.getNome();
-        String codigo = advogado.getCodigo();
-        if(nome != null && codigo != null){
-            nome_txt.setText(nome);
-            codigo_txt.setText(codigo);
-        }
+        String nome = this.advogado.getNome();
+        nome_oficial = nome;
+        String codigo = this.advogado.getCodigo();
+        codigo_oficial = codigo;
+        editavel(nome_oficial, codigo_oficial);
     }
 
     /**
@@ -74,10 +77,20 @@ public class PerfilAdvogado extends javax.swing.JFrame {
         });
 
         salvar_btn.setText("Salvar");
+        salvar_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salvar_btnActionPerformed(evt);
+            }
+        });
 
         adcionar_btn.setText("Adcionar Processo");
+        adcionar_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adcionar_btnActionPerformed(evt);
+            }
+        });
 
-        manter_btn.setLabel("Manter");
+        manter_btn.setText("Manter");
         manter_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 manter_btnActionPerformed(evt);
@@ -106,9 +119,9 @@ public class PerfilAdvogado extends javax.swing.JFrame {
                                     .addComponent(codigo_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(editar_btn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(manter_btn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(salvar_btn)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(adcionar_btn)))))
@@ -139,7 +152,10 @@ public class PerfilAdvogado extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    private void editavel(){
+    private void editavel(String nome, String codigo){
+       
+        editar_btn.setVisible(true);
+        adcionar_btn.setVisible(true);
         nome_txt.setEnabled(false);
         nome_txt.setDisabledTextColor(UIManager.getColor("TextField.foreground"));
         nome_txt.setCaretColor(UIManager.getColor("TextField.caretForeground"));
@@ -148,11 +164,14 @@ public class PerfilAdvogado extends javax.swing.JFrame {
         codigo_txt.setCaretColor(UIManager.getColor("TextField.caretForeground"));
         salvar_btn.setVisible(false);
         manter_btn.setVisible(false);
+        
+        if(nome != null && codigo != null){
+            nome_txt.setText(nome);
+            codigo_txt.setText(codigo);
+        }
        
     }
     private void editar_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editar_btnActionPerformed
-        String nome = nome_txt.getText();
-        String codigo = codigo_txt.getText();
         //habilitar campos e botão salvar
         nome_txt.setEnabled(true);
         codigo_txt.setEnabled(true);
@@ -161,18 +180,31 @@ public class PerfilAdvogado extends javax.swing.JFrame {
         //desabilitar campo editar e adcionar processo
         adcionar_btn.setVisible(false);
         editar_btn.setVisible(false);
+        
     }//GEN-LAST:event_editar_btnActionPerformed
 
     private void nome_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nome_txtActionPerformed
-        System.out.println("teste");
+
     }//GEN-LAST:event_nome_txtActionPerformed
 
+    private void salvar_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvar_btnActionPerformed
+        String nome = nome_txt.getText();
+        String codigo = codigo_txt.getText();
+        this.advogado.setNome(nome);
+        this.advogado.setCodigo(codigo);
+        //se houver mais de um advogado, então remove o anterior e adciona o novo da lista (no futuro eu vou entender)
+        new PerfilAdvogado(advogado).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_salvar_btnActionPerformed
+
     private void manter_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manter_btnActionPerformed
-        editavel();
-        //devolver visibilidade dos botões
-        adcionar_btn.setVisible(true);
-        editar_btn.setVisible(true);
+        editavel(nome_oficial, codigo_oficial);
     }//GEN-LAST:event_manter_btnActionPerformed
+
+    private void adcionar_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adcionar_btnActionPerformed
+        new CadastroProcesso(this.advogado).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_adcionar_btnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton adcionar_btn;

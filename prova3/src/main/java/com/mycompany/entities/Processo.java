@@ -2,7 +2,7 @@ package com.mycompany.entities;
 
 public class Processo {
     private String tipo;
-    private String codigo;
+    private int id; // simplesmente id++
     private double valor;
     private String data;
     private String objetivo;
@@ -10,16 +10,14 @@ public class Processo {
 
     public Processo(){}
     
-    public Processo(String tipo, String codigo, double valor, String data, String objetivo, String descricao) {
+    public Processo(String tipo, int id, double valor, String data, String objetivo, String descricao) {
         this.tipo = tipo;
-        this.codigo = codigo;
+        this.id = id; //recebe a quantidade de processos + 1
         this.valor = valor;
         this.data = data;
         this.objetivo = objetivo;
         this.descricao = descricao;
     }
-
-    
     
     public String getTipo() {
         return tipo;
@@ -27,14 +25,6 @@ public class Processo {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
-    }
-
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
     }
 
     public double getValor() {

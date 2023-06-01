@@ -127,7 +127,6 @@ public class CadastroAdvogado extends javax.swing.JFrame {
         String nome = nome_txt.getText();
         String codigo = codigo_txt.getText();
         Advogado advogado = new Advogado(nome, codigo);
-        System.out.println(advogado.getNome());
        //tratar erros blablabla
         new PerfilAdvogado(advogado).setVisible(true);
         dispose();

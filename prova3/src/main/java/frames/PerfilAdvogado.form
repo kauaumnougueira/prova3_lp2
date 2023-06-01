@@ -49,9 +49,9 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="editar_btn" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="manter_btn" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="salvar_btn" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="adcionar_btn" min="-2" max="-2" attributes="0"/>
@@ -134,15 +134,21 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Salvar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="salvar_btnActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="adcionar_btn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Adcionar Processo"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="adcionar_btnActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="manter_btn">
       <Properties>
-        <Property name="label" type="java.lang.String" value="Manter"/>
+        <Property name="text" type="java.lang.String" value="Manter"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="manter_btnActionPerformed"/>

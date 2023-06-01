@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class Advogado {
     private String nome;
     private String codigo;
+    private int quantidadeprocessos = 0;
     private ArrayList<Processo> processos = new ArrayList<>();
     
     public Advogado(String nome, String codigo){
@@ -37,10 +38,15 @@ public class Advogado {
 
     public void addProcesso(Processo processo) {
         processos.add(processo);
+        this.quantidadeprocessos++;
     }
     
     public void removeProcesso(Processo processo){
         processos.remove(processo);
+        this.quantidadeprocessos--;
+    }
+    public int getQuantidadeProcessos(){
+        return quantidadeprocessos;
     }
     
 }
