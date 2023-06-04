@@ -1,5 +1,7 @@
 package com.mycompany.entities;
 
+import java.util.ArrayList;
+
 public class Processo {
     private String tipo;
     private int id; // simplesmente id++
@@ -7,6 +9,8 @@ public class Processo {
     private String data;
     private String objetivo;
     private String descricao;
+    ArrayList<Advogado> advogados = new ArrayList<>();
+    int qntAdv = 0;
 
     public Processo(){}
     
@@ -57,6 +61,24 @@ public class Processo {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+    
+    public ArrayList<Advogado> getProcessos() {
+        return this.advogados;
+    }
+
+    public void addProcesso(Advogado advogado) {
+        this.advogados.add(advogado);
+        this.qntAdv++;
+    }
+    
+    public void removeProcesso(Advogado advogado){
+        this.advogados.remove(advogado);
+        this.qntAdv--;
+    }
+    
+    public int qntAdv(){
+        return this.qntAdv;
     }
     
 }

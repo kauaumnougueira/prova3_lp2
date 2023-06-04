@@ -1,16 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package frames;
 
 import com.mycompany.entities.Advogado;
 import com.mycompany.entities.Processo;
 
-/**
- *
- * @author kaua
- */
 public class CadastroProcesso extends javax.swing.JFrame {
 
     private final Advogado advogado;
@@ -168,11 +160,7 @@ public class CadastroProcesso extends javax.swing.JFrame {
         String data = data_txt.getText();
         String objetivo = objetivo_txt.getText();
         String descricao = descricao_txt.getText();
-        int id = this.advogado.getQuantidadeProcessos() + 1;
-        
-        Processo processo = new  Processo(tipo, id, valord, data, objetivo, descricao);
-        this.advogado.addProcesso(processo);
-        
+       
         new PerfilAdvogado(this.advogado).setVisible(true);
         dispose();
     }//GEN-LAST:event_salvar_txtActionPerformed
