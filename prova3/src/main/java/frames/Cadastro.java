@@ -6,14 +6,14 @@ package frames;
 
 /**
  *
- * @author dpf
+ * @author kaua
  */
-public class Login extends javax.swing.JFrame {
+public class Cadastro extends javax.swing.JFrame {
 
     /**
-     * Creates new form Login
+     * Creates new form Cadastro
      */
-    public Login() {
+    public Cadastro() {
         initComponents();
     }
 
@@ -26,23 +26,16 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        txtSenha = new javax.swing.JPasswordField();
+        btnLogin = new javax.swing.JButton();
         lblLogin = new javax.swing.JLabel();
         lblUsuario = new javax.swing.JLabel();
         lblSenha = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
-        txtSenha = new javax.swing.JPasswordField();
-        btnLogin = new javax.swing.JButton();
+        txtSenha1 = new javax.swing.JPasswordField();
+        lblSenha1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        lblLogin.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblLogin.setText("LOGIN");
-
-        lblUsuario.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        lblUsuario.setText("Usuário:");
-
-        lblSenha.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        lblSenha.setText("Senha:");
 
         txtSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -51,52 +44,79 @@ public class Login extends javax.swing.JFrame {
         });
 
         btnLogin.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnLogin.setText("Login");
+        btnLogin.setText("Cadastro");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoginActionPerformed(evt);
             }
         });
 
+        lblLogin.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblLogin.setText("CADASTRO");
+
+        lblUsuario.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lblUsuario.setText("Usuário:");
+
+        lblSenha.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lblSenha.setText("Senha:");
+
+        txtSenha1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSenha1ActionPerformed(evt);
+            }
+        });
+
+        lblSenha1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lblSenha1.setText("Confirmação:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(lblSenha1)
+                                .addComponent(lblUsuario)
+                                .addComponent(lblSenha))
+                            .addGap(29, 29, 29)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtSenha1, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
+                                .addComponent(txtUsuario)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(147, 147, 147)
+                            .addComponent(lblLogin))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(153, 153, 153)
+                            .addComponent(btnLogin)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(182, 182, 182)
-                        .addComponent(lblLogin))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblUsuario)
-                            .addComponent(lblSenha))
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtUsuario)
-                            .addComponent(txtSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(174, 174, 174)
-                        .addComponent(btnLogin)))
-                .addContainerGap(60, Short.MAX_VALUE))
+                        .addContainerGap(119, Short.MAX_VALUE)
+                        .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addGap(45, 45, 45)
                 .addComponent(lblLogin)
-                .addGap(27, 27, 27)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUsuario)
                     .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblSenha)
-                    .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                    .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblSenha))
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblSenha1)
+                    .addComponent(txtSenha1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(btnLogin)
-                .addGap(33, 33, 33))
+                .addGap(28, 28, 28))
         );
 
         pack();
@@ -107,8 +127,12 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSenhaActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        for (int i = 0; i < )
+
     }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void txtSenha1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenha1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSenha1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -127,20 +151,20 @@ public class Login extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login().setVisible(true);
+                new Cadastro().setVisible(true);
             }
         });
     }
@@ -149,8 +173,10 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton btnLogin;
     private javax.swing.JLabel lblLogin;
     private javax.swing.JLabel lblSenha;
+    private javax.swing.JLabel lblSenha1;
     private javax.swing.JLabel lblUsuario;
     private javax.swing.JPasswordField txtSenha;
+    private javax.swing.JPasswordField txtSenha1;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }
