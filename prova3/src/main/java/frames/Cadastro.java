@@ -42,6 +42,7 @@ public class Cadastro extends javax.swing.JFrame {
         lblSenha1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         txtSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,6 +127,7 @@ public class Cadastro extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaActionPerformed
@@ -142,6 +144,9 @@ public class Cadastro extends javax.swing.JFrame {
         }else{
             Usuario usuario = new Usuario(txtusuario, senha);
             usuarios.addUsuario(usuario);
+            JOptionPane.showMessageDialog(null, "Usuário cadastrado");
+            new Home().setVisible(true);
+            dispose();
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 
