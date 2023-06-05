@@ -5,6 +5,7 @@
 package frames;
 
 import classes_principais.ListaUsuarios;
+import classes_principais.Usuario;
 import javax.swing.JOptionPane;
 
 /**
@@ -118,17 +119,34 @@ public class Login extends javax.swing.JFrame {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         String usuario = txtUsuario.getText();
         String senha = txtSenha.getText();
-        
-        if(usuarios.existeUsuario(usuario)){
-            
-        }else{
-            int result = JOptionPane.showConfirmDialog(null, "USUÁRIO NÃO ENCONTRADO, DESEJA SER REDIRECIONADO PARA CADASTRO?", "Erro de Login",
-                        JOptionPane.YES_NO_OPTION,
-                        JOptionPane.ERROR_MESSAGE);
-            if (result == 0){
-                new Cadastro().setVisible(true);
-                dispose();
+        //verifica se ta vazio
+        if(!usuario.isEmpty() && !senha.isEmpty()){
+            //verifica se existe
+            if(usuarios.existeUsuario(usuario)){
+                //verifica se ta correto
+                Usuario usuarioGet = usuarios.getUsuario(usuario);
+                if(usuarios.validacao(usuarioGet, senha)){
+                    
+                }else{
+                    int result = JOptionPane.showConfirmDialog(null, "INFORMAÇÕES NÃO CORRESPONDIDAS, DESEJA SER REDIRECIONADO PARA CADASTRO?", "Erro de Login",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.ERROR_MESSAGE);
+                    if (result == 0){
+                        new Cadastro(usuarios).setVisible(true);
+                        dispose();
+                    }
+                }
+            }else{
+                int result = JOptionPane.showConfirmDialog(null, "INFORMAÇÕES NÃO CORRESPONDIDAS, DESEJA SER REDIRECIONADO PARA CADASTRO?", "Erro de Login",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.ERROR_MESSAGE);
+                if (result == 0){
+                    new Cadastro(usuarios).setVisible(true);
+                    dispose();
+                }
             }
+        }else{
+            JOptionPane.showMessageDialog(null, "Algum campo vazio");
         }
         
     }//GEN-LAST:event_btnLoginActionPerformed

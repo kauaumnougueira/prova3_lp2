@@ -32,5 +32,20 @@ public class ListaUsuarios {
         }
         return false;
     }
+    
+    public Usuario getUsuario(String nome){
+        if(existeUsuario(nome)){
+            for (int i = 0; i< this.usuarios.size(); i++){
+                if (this.usuarios.get(i).getNome().equals(nome)){
+                    return this.usuarios.get(i);
+                }
+            }
+        }
+        return null;
+    }
 
+    public boolean validacao(Usuario usuario, String senha){
+        return usuario.getSenha().equals(senha);
+    }
+    
 }

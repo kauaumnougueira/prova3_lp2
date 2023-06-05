@@ -35,7 +35,7 @@
                           </Group>
                           <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="txtSenha1" pref="263" max="32767" attributes="0"/>
+                              <Component id="txtConfirmacao" pref="263" max="32767" attributes="0"/>
                               <Component id="txtUsuario" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -75,7 +75,7 @@
               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblSenha1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtSenha1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtConfirmacao" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="38" max="32767" attributes="0"/>
               <Component id="btnLogin" min="-2" max="-2" attributes="0"/>
@@ -127,9 +127,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtUsuario">
     </Component>
-    <Component class="javax.swing.JPasswordField" name="txtSenha1">
+    <Component class="javax.swing.JPasswordField" name="txtConfirmacao">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtSenha1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtConfirmacaoActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblSenha1">

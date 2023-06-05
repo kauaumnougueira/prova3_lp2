@@ -4,6 +4,10 @@
  */
 package frames;
 
+import classes_principais.ListaUsuarios;
+import classes_principais.Usuario;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author kaua
@@ -13,7 +17,9 @@ public class Cadastro extends javax.swing.JFrame {
     /**
      * Creates new form Cadastro
      */
-    public Cadastro() {
+    private final ListaUsuarios usuarios;
+    public Cadastro(ListaUsuarios usuarios) {
+        this.usuarios = usuarios;
         initComponents();
     }
 
@@ -32,7 +38,7 @@ public class Cadastro extends javax.swing.JFrame {
         lblUsuario = new javax.swing.JLabel();
         lblSenha = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
-        txtSenha1 = new javax.swing.JPasswordField();
+        txtConfirmacao = new javax.swing.JPasswordField();
         lblSenha1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -60,9 +66,9 @@ public class Cadastro extends javax.swing.JFrame {
         lblSenha.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lblSenha.setText("Senha:");
 
-        txtSenha1.addActionListener(new java.awt.event.ActionListener() {
+        txtConfirmacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSenha1ActionPerformed(evt);
+                txtConfirmacaoActionPerformed(evt);
             }
         });
 
@@ -84,7 +90,7 @@ public class Cadastro extends javax.swing.JFrame {
                                 .addComponent(lblSenha))
                             .addGap(29, 29, 29)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtSenha1, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
+                                .addComponent(txtConfirmacao, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
                                 .addComponent(txtUsuario)))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(147, 147, 147)
@@ -113,7 +119,7 @@ public class Cadastro extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSenha1)
-                    .addComponent(txtSenha1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtConfirmacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(btnLogin)
                 .addGap(28, 28, 28))
@@ -127,47 +133,22 @@ public class Cadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSenhaActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-
+        String txtusuario = txtUsuario.getText();
+        String senha = txtSenha.getText();
+        String confirmacao = txtConfirmacao.getText();
+        
+        if(!senha.equals(confirmacao)){
+           JOptionPane.showMessageDialog(null, "Senhas não correspondentes");
+        }else{
+            Usuario usuario = new Usuario(txtusuario, senha);
+            usuarios.addUsuario(usuario);
+        }
     }//GEN-LAST:event_btnLoginActionPerformed
 
-    private void txtSenha1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenha1ActionPerformed
+    private void txtConfirmacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConfirmacaoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtSenha1ActionPerformed
+    }//GEN-LAST:event_txtConfirmacaoActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Cadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Cadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Cadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Cadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Cadastro().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
@@ -175,8 +156,8 @@ public class Cadastro extends javax.swing.JFrame {
     private javax.swing.JLabel lblSenha;
     private javax.swing.JLabel lblSenha1;
     private javax.swing.JLabel lblUsuario;
+    private javax.swing.JPasswordField txtConfirmacao;
     private javax.swing.JPasswordField txtSenha;
-    private javax.swing.JPasswordField txtSenha1;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

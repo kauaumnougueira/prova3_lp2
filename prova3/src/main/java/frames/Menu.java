@@ -109,7 +109,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCadastroMouseClicked
 
     private void btnCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroActionPerformed
-        new Cadastro().setVisible(true);
+        new Cadastro(usuarios).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnCadastroActionPerformed
 
