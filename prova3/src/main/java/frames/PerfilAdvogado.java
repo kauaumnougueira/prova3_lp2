@@ -5,6 +5,7 @@
 package frames;
 
 import classes_principais.Advogado;
+import classes_principais.ListaUsuarios;
 import classes_principais.Sistema;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -20,11 +21,13 @@ public class PerfilAdvogado extends javax.swing.JFrame {
      */
     private final Advogado advogado;
     private Sistema banco;
+    private ListaUsuarios usuarios;
     
     String nome_oficial;
     String codigo_oficial;
     
-    public PerfilAdvogado(Advogado advogado, Sistema banco){
+    public PerfilAdvogado(Advogado advogado, Sistema banco, ListaUsuarios usuarios){
+        this.usuarios = usuarios;
         this.banco = banco;
         this.advogado = advogado;
         initComponents();
@@ -207,7 +210,7 @@ public class PerfilAdvogado extends javax.swing.JFrame {
         this.advogado.setNome(nome);
         this.advogado.setCodigo(codigo);
         //se houver mais de um advogado, então remove o anterior e adciona o novo da lista (no futuro eu vou entender)
-        new PerfilAdvogado(advogado, banco).setVisible(true);
+        new PerfilAdvogado(advogado, banco, usuarios).setVisible(true);
         dispose();
     }//GEN-LAST:event_salvar_btnActionPerformed
 
@@ -216,7 +219,7 @@ public class PerfilAdvogado extends javax.swing.JFrame {
     }//GEN-LAST:event_manter_btnActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new Home(banco).setVisible(true);
+        new Home(banco, usuarios).setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 

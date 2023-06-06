@@ -8,14 +8,17 @@ package frames;
  * @author kaua
  */
 import classes_principais.Advogado;
+import classes_principais.ListaUsuarios;
 import classes_principais.Sistema;
 public class CadastroAdvogado extends javax.swing.JFrame {
     /**
      * Creates new form Cadastro
      */
     private Sistema banco;
+    private ListaUsuarios usuarios;
     
-    public CadastroAdvogado(Sistema banco) {
+    public CadastroAdvogado(Sistema banco, ListaUsuarios usuarios) {
+        this.usuarios = usuarios;
         this.banco = banco;
         initComponents();
     }
@@ -133,7 +136,7 @@ public class CadastroAdvogado extends javax.swing.JFrame {
         Advogado advogado = new Advogado(nome, codigo, id);
         banco.addAdvogado(advogado);
        //tratar erros blablabla
-        new PerfilAdvogado(advogado, banco).setVisible(true);
+        new PerfilAdvogado(advogado, banco, usuarios).setVisible(true);
         dispose();
     }//GEN-LAST:event_cadastrar_btnActionPerformed
 

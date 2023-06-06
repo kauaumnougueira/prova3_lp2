@@ -6,6 +6,7 @@ package classes_principais;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -18,9 +19,9 @@ import java.util.ArrayList;
 public class Sistema {
     //para recuperar do banco
     private ArrayList<Processo> processos = new ArrayList<>();
-    String pathpro = "processos.txt";
+    String pathpro = "C:\\Users\\kaua\\Desktop\\facullixodade\\3 Período\\LP2\\prova3_lp2\\prova3_lp2\\processos.txt";
     private ArrayList<Advogado> advogados = new ArrayList<>();
-    String pathadv = "advogados.txt";
+    String pathadv = "C:\\Users\\kaua\\Desktop\\facullixodade\\3 Período\\LP2\\prova3_lp2\\prova3_lp2\\advogados.txt";
     
     public Sistema(){
     }
@@ -44,17 +45,30 @@ public class Sistema {
     public void addAdvogado(Advogado advogado){
         this.advogados.add(advogado);
     }
+    public Advogado getAdvogadoNome(String nome){
+        for (int i = 0; i< this.advogados.size(); i++){
+            if (this.advogados.get(i).getNome().equals(nome)){
+                return this.advogados.get(i);
+            }
+        }
+        return null;
+    }
 
     //funções de arquivo
     public void writingFileAdvogados(){
+        File file = new File(pathadv);
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(pathadv, true))) {
+            if(file.exists()){
+                file.delete();
+            }
+            file.createNewFile();
             for(int i = 0; i < this.advogados.size(); i++){
                 Advogado escrever = getAdvogadoLista(i);
-                bw.write("I##########");
-                bw.write(escrever.getId());
-                bw.write(escrever.getNome());
-                bw.write(escrever.getCodigo());
-                bw.write("F##########");
+                bw.write("I##########\n");
+                bw.write(escrever.getId()+"\n");
+                bw.write(escrever.getNome()+"\n");
+                bw.write(escrever.getCodigo()+"\n");
+                bw.write("F##########\n");
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -62,24 +76,29 @@ public class Sistema {
     }
     
     public void writingFileProcessos(){
+        File file = new File(pathpro);
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(pathpro, true))) {
+            if(file.exists()){
+                file.delete();
+            }
+            file.createNewFile();
             for(int i = 0; i < this.processos.size(); i++){
                 Processo escrever = getProcessoLista(i);
-                bw.write("I##########");
-                bw.write(escrever.getId());
-                bw.write(escrever.getTipo());
-                bw.write(Double.toString(escrever.getValor()));
-                bw.write(escrever.getData());
-                bw.write(escrever.getObjetivo());
-                bw.write(escrever.getDescricao());
-                bw.write("Advogados participantes:");
+                bw.write("I##########\n");
+                bw.write(escrever.getId()+"\n");
+                bw.write(escrever.getTipo()+"\n");
+                bw.write(Double.toString(escrever.getValor())+"\n");
+                bw.write(escrever.getData()+"\n");
+                bw.write(escrever.getObjetivo()+"\n");
+                bw.write(escrever.getDescricao()+"\n");
+                bw.write("Advogados participantes:\n");
                 ArrayList<Advogado> advogadosEscrever = escrever.getAdvogados();
                 for(int j = 0; j < advogadosEscrever.size(); j++){
                     Advogado advogadoEscrever = getAdvogadoLista(j);
-                    bw.write(advogadoEscrever.getNome());
-                    bw.write(advogadoEscrever.getCodigo());
+                    bw.write(advogadoEscrever.getNome()+"\n");
+                    bw.write(advogadoEscrever.getCodigo()+"\n");
                 }
-                bw.write("F##########");
+                bw.write("F##########\n");
             }
         } catch (IOException e) {
             e.printStackTrace();

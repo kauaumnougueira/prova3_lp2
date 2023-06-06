@@ -14,8 +14,10 @@ classes_principais\Application.class
 frames\CadastroProcesso$4.class
 frames\PerfilAdvogado$3.class
 frames\CadastroProcesso$2.class
+frames\Home$4.class
 frames\Home$3.class
 frames\PerfilAdvogado.class
+frames\Menu$4.class
 frames\Menu.class
 frames\Cadastro$3.class
 frames\Cadastro$1.class

@@ -5,6 +5,8 @@
 package frames;
 
 import classes_principais.ListaUsuarios;
+import classes_principais.Sistema;
+import classes_principais.Usuario;
 
 
 
@@ -14,10 +16,14 @@ public class Menu extends javax.swing.JFrame {
      * Creates new form frame_login
      * @param usuarios
      */
-    private final ListaUsuarios usuarios;
+    private ListaUsuarios usuarios;
+    private Sistema banco;
     
-    public Menu(ListaUsuarios usuarios) {
-        this.usuarios = usuarios;
+    public Menu(ListaUsuarios usuarios, Sistema banco) {
+        if(usuarios != null){
+            this.usuarios = usuarios;
+        }
+        this.banco = banco;
         initComponents();
     }
 
@@ -34,6 +40,7 @@ public class Menu extends javax.swing.JFrame {
         btnCadastro = new javax.swing.JButton();
         btnLogin = new javax.swing.JButton();
         btnAjuda = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -65,21 +72,30 @@ public class Menu extends javax.swing.JFrame {
         btnAjuda.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btnAjuda.setText("AJUDA");
 
+        jButton1.setText("SAIR E SALVAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(162, 162, 162)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnCadastro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnAjuda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(163, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblMenu)
                 .addGap(191, 191, 191))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(161, 161, 161)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnCadastro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnAjuda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(163, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -92,7 +108,9 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(btnLogin)
                 .addGap(18, 18, 18)
                 .addComponent(btnAjuda)
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         pack();
@@ -100,7 +118,7 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        new Login(usuarios).setVisible(true);
+        new Login(usuarios, banco).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnLoginActionPerformed
 
@@ -109,14 +127,21 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCadastroMouseClicked
 
     private void btnCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroActionPerformed
-        new Cadastro(usuarios).setVisible(true);
+        new Cadastro(usuarios, banco).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnCadastroActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        banco.writingFileAdvogados();
+        banco.writingFileProcessos();
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAjuda;
     private javax.swing.JButton btnCadastro;
     private javax.swing.JButton btnLogin;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel lblMenu;
     // End of variables declaration//GEN-END:variables
 }

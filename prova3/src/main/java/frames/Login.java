@@ -5,6 +5,7 @@
 package frames;
 
 import classes_principais.ListaUsuarios;
+import classes_principais.Sistema;
 import classes_principais.Usuario;
 import javax.swing.JOptionPane;
 
@@ -19,8 +20,10 @@ public class Login extends javax.swing.JFrame {
      * @param usuarios
      */
     private final ListaUsuarios usuarios;
+    private Sistema banco;
     
-    public Login(ListaUsuarios usuarios) {
+    public Login(ListaUsuarios usuarios, Sistema banco) {
+        this.banco = banco;
         this.usuarios = usuarios;
         initComponents();
     }
@@ -126,14 +129,15 @@ public class Login extends javax.swing.JFrame {
                 //verifica se ta correto
                 Usuario usuarioGet = usuarios.getUsuario(usuario);
                 if(usuarios.validacao(usuarioGet, senha)){
-                    new Home(null).setVisible(true);
+                    JOptionPane.showMessageDialog(null, "Logado como " + usuario);
+                    new Home(banco, usuarios).setVisible(true);
                     dispose();
                 }else{
                     int result = JOptionPane.showConfirmDialog(null, "INFORMAÇÕES NÃO CORRESPONDIDAS, DESEJA SER REDIRECIONADO PARA CADASTRO?", "Erro de Login",
                             JOptionPane.YES_NO_OPTION,
                             JOptionPane.ERROR_MESSAGE);
                     if (result == 0){
-                        new Cadastro(usuarios).setVisible(true);
+                        new Cadastro(usuarios, banco).setVisible(true);
                         dispose();
                     }
                 }
@@ -142,7 +146,7 @@ public class Login extends javax.swing.JFrame {
                             JOptionPane.YES_NO_OPTION,
                             JOptionPane.ERROR_MESSAGE);
                 if (result == 0){
-                    new Cadastro(usuarios).setVisible(true);
+                    new Cadastro(usuarios, banco).setVisible(true);
                     dispose();
                 }
             }

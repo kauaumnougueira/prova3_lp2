@@ -13,7 +13,13 @@ import frames.Menu;
 public class Application {
     public static void main(String[] args){
         ListaUsuarios usuarios = new ListaUsuarios();
+        Usuario admin = new Usuario("admin", "admin");
+        usuarios.addUsuario(admin);
         
-        new Menu(usuarios).setVisible(true);
+        Sistema banco = new Sistema();
+        banco.readingFileProcessos();
+        banco.readingFileAdvogados();
+        
+        new Menu(usuarios,banco).setVisible(true);
     }
 }

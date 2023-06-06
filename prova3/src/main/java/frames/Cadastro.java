@@ -5,6 +5,7 @@
 package frames;
 
 import classes_principais.ListaUsuarios;
+import classes_principais.Sistema;
 import classes_principais.Usuario;
 import javax.swing.JOptionPane;
 
@@ -18,7 +19,10 @@ public class Cadastro extends javax.swing.JFrame {
      * Creates new form Cadastro
      */
     private final ListaUsuarios usuarios;
-    public Cadastro(ListaUsuarios usuarios) {
+    private Sistema banco;
+    
+    public Cadastro(ListaUsuarios usuarios, Sistema banco) {
+        this.banco = banco;
         this.usuarios = usuarios;
         initComponents();
     }
@@ -145,7 +149,7 @@ public class Cadastro extends javax.swing.JFrame {
             Usuario usuario = new Usuario(txtusuario, senha);
             usuarios.addUsuario(usuario);
             JOptionPane.showMessageDialog(null, "Usuário cadastrado");
-            new Home(null).setVisible(true);
+            new Home(banco, usuarios).setVisible(true);
             dispose();
         }
     }//GEN-LAST:event_btnLoginActionPerformed

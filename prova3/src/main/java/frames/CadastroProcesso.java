@@ -1,18 +1,20 @@
 package frames;
 
 import classes_principais.Advogado;
+import classes_principais.ListaUsuarios;
 import classes_principais.Processo;
 import classes_principais.Sistema;
 
 public class CadastroProcesso extends javax.swing.JFrame {
 
     private Sistema banco;
-
+    private ListaUsuarios usuarios;
     /**
      * Creates new form CadastroProcesso
      * @param banco
      */
-    public CadastroProcesso(Sistema banco) {
+    public CadastroProcesso(Sistema banco, ListaUsuarios usuarios) {
+        this.usuarios = usuarios;
         this.banco = banco;
         initComponents();
         for(int i = 0; i < this.banco.getAdvogados().size(); i++){
@@ -86,7 +88,7 @@ public class CadastroProcesso extends javax.swing.JFrame {
         jScrollPane1.setViewportView(descricao_txt);
 
         salvar_txt.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        salvar_txt.setText("Salvar");
+        salvar_txt.setText("Cadastrar");
         salvar_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 salvar_txtActionPerformed(evt);
@@ -99,7 +101,8 @@ public class CadastroProcesso extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setText("Advogados envolvidos");
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel7.setText("Advogado Envolvido");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -129,11 +132,9 @@ public class CadastroProcesso extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(44, 44, 44)
-                                        .addComponent(tipo_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                        .addComponent(tipo_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel4)
                                     .addGroup(layout.createSequentialGroup()
@@ -142,7 +143,7 @@ public class CadastroProcesso extends javax.swing.JFrame {
                                         .addComponent(objetivo_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(advogadosLista, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(164, 164, 164)
+                        .addGap(157, 157, 157)
                         .addComponent(salvar_txt)))
                 .addGap(17, 33, Short.MAX_VALUE))
         );
@@ -188,9 +189,15 @@ public class CadastroProcesso extends javax.swing.JFrame {
         String data = data_txt.getText();
         String objetivo = objetivo_txt.getText();
         String descricao = descricao_txt.getText();
+        String advogado = (String) advogadosLista.getSelectedItem();
        
+        Advogado advogadoGet = banco.getAdvogadoNome(advogado);
+        
         Processo processo = new Processo(tipo, id, valord, data, objetivo, descricao);
+        processo.addAdvogado(advogadoGet);
         banco.addProcesso(processo);
+        
+        new Home(banco, usuarios).setVisible(true);
         dispose();
     }//GEN-LAST:event_salvar_txtActionPerformed
 
