@@ -126,7 +126,7 @@ public class Login extends javax.swing.JFrame {
                 //verifica se ta correto
                 Usuario usuarioGet = usuarios.getUsuario(usuario);
                 if(usuarios.validacao(usuarioGet, senha)){
-                    new Home().setVisible(true);
+                    new Home(null).setVisible(true);
                     dispose();
                 }else{
                     int result = JOptionPane.showConfirmDialog(null, "INFORMAÇÕES NÃO CORRESPONDIDAS, DESEJA SER REDIRECIONADO PARA CADASTRO?", "Erro de Login",

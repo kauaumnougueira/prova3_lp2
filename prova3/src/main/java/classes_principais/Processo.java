@@ -63,22 +63,26 @@ public class Processo {
         this.descricao = descricao;
     }
     
-    public ArrayList<Advogado> getProcessos() {
+    public ArrayList<Advogado> getAdvogados() {
         return this.advogados;
     }
 
-    public void addProcesso(Advogado advogado) {
+    public void addAdvogado(Advogado advogado) {
         this.advogados.add(advogado);
         this.qntAdv++;
     }
     
-    public void removeProcesso(Advogado advogado){
+    public void removeAdvogado(Advogado advogado){
         this.advogados.remove(advogado);
         this.qntAdv--;
     }
     
     public int qntAdv(){
         return this.qntAdv;
+    }
+
+    public int getId(){
+        return this.id;
     }
     
 }

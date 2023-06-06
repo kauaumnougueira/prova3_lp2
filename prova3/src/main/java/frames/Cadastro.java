@@ -145,7 +145,7 @@ public class Cadastro extends javax.swing.JFrame {
             Usuario usuario = new Usuario(txtusuario, senha);
             usuarios.addUsuario(usuario);
             JOptionPane.showMessageDialog(null, "Usuário cadastrado");
-            new Home().setVisible(true);
+            new Home(null).setVisible(true);
             dispose();
         }
     }//GEN-LAST:event_btnLoginActionPerformed

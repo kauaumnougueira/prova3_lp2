@@ -8,11 +8,15 @@ package frames;
  * @author kaua
  */
 import classes_principais.Advogado;
+import classes_principais.Sistema;
 public class CadastroAdvogado extends javax.swing.JFrame {
     /**
      * Creates new form Cadastro
      */
-    public CadastroAdvogado() {
+    private Sistema banco;
+    
+    public CadastroAdvogado(Sistema banco) {
+        this.banco = banco;
         initComponents();
     }
 
@@ -123,11 +127,13 @@ public class CadastroAdvogado extends javax.swing.JFrame {
     }//GEN-LAST:event_codigo_txtActionPerformed
 
     private void cadastrar_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrar_btnActionPerformed
+        int id = banco.getAdvogados().size()+1;
         String nome = nome_txt.getText();
         String codigo = codigo_txt.getText();
-        Advogado advogado = new Advogado(nome, codigo);
+        Advogado advogado = new Advogado(nome, codigo, id);
+        banco.addAdvogado(advogado);
        //tratar erros blablabla
-        new PerfilAdvogado(advogado).setVisible(true);
+        new PerfilAdvogado(advogado, banco).setVisible(true);
         dispose();
     }//GEN-LAST:event_cadastrar_btnActionPerformed
 
