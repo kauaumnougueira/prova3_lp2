@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package frames;
+package main.java.frames;
 
-import classes_principais.ListaUsuarios;
-import classes_principais.Sistema;
-import classes_principais.Usuario;
+import main.java.classes_principais.ListaUsuarios;
+import main.java.classes_principais.Sistema;
+import main.java.classes_principais.Usuario;
 import javax.swing.JOptionPane;
 
 /**

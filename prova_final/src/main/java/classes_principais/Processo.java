@@ -1,4 +1,4 @@
-package classes_principais;
+package main.java.classes_principais;
 
 import java.util.ArrayList;
 
@@ -9,18 +9,19 @@ public class Processo {
     private String data;
     private String objetivo;
     private String descricao;
-    ArrayList<Advogado> advogados = new ArrayList<>();
+    Advogado advogado;
     int qntAdv = 0;
 
     public Processo(){}
     
-    public Processo(String tipo, int id, double valor, String data, String objetivo, String descricao) {
+    public Processo(String tipo, int id, double valor, String data, String objetivo, String descricao, Advogado advogado) {
         this.tipo = tipo;
         this.id = id; //recebe a quantidade de processos + 1
         this.valor = valor;
         this.data = data;
         this.objetivo = objetivo;
         this.descricao = descricao;
+        this.advogado = advogado;
     }
     
     public String getTipo() {
@@ -62,25 +63,15 @@ public class Processo {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-    
-    public ArrayList<Advogado> getAdvogados() {
-        return this.advogados;
+
+    public Advogado getAdvogado() {
+        return advogado;
     }
 
-    public void addAdvogado(Advogado advogado) {
-        this.advogados.add(advogado);
-        this.qntAdv++;
+    public void setAdvogado(Advogado advogado) {
+        this.advogado = advogado;
     }
     
-    public void removeAdvogado(Advogado advogado){
-        this.advogados.remove(advogado);
-        this.qntAdv--;
-    }
-    
-    public int qntAdv(){
-        return this.qntAdv;
-    }
-
     public int getId(){
         return this.id;
     }

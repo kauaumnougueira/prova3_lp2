@@ -2,10 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package frames;
+package main.java.frames;
 
-import classes_principais.ListaUsuarios;
-import classes_principais.Sistema;
+import javax.swing.JOptionPane;
+import main.java.classes_principais.ListaUsuarios;
+import main.java.classes_principais.Sistema;
+import main.java.frames.RelatorioProcessos;
 
 /**
  *
@@ -40,7 +42,6 @@ public class Home extends javax.swing.JFrame {
     private void initComponents() {
 
         lblHome = new javax.swing.JLabel();
-        btnAdvogadosCadastrados = new javax.swing.JButton();
         btnProcessosArquivados = new javax.swing.JButton();
         btnCadastrarAdvogado = new javax.swing.JButton();
         btnCadastrarProcesso = new javax.swing.JButton();
@@ -53,16 +54,13 @@ public class Home extends javax.swing.JFrame {
         lblHome.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblHome.setText("HOME");
 
-        btnAdvogadosCadastrados.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnAdvogadosCadastrados.setText("Advogados Cadastrados");
-        btnAdvogadosCadastrados.addActionListener(new java.awt.event.ActionListener() {
+        btnProcessosArquivados.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnProcessosArquivados.setText("Relatório dos Processos");
+        btnProcessosArquivados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdvogadosCadastradosActionPerformed(evt);
+                btnProcessosArquivadosActionPerformed(evt);
             }
         });
-
-        btnProcessosArquivados.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnProcessosArquivados.setText("Processos Arquivados");
 
         btnCadastrarAdvogado.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btnCadastrarAdvogado.setText("Cadastrar Advogado");
@@ -104,33 +102,28 @@ public class Home extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnSair)
                         .addGap(170, 170, 170))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnCadastrarAdvogado, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnCadastrarProcesso, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnAdvogadosCadastrados)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnProcessosArquivados)))
-                .addContainerGap(22, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(181, 181, 181)
                 .addComponent(lblHome)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(21, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btnProcessosArquivados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnCadastrarAdvogado, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCadastrarProcesso, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addComponent(lblHome)
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAdvogadosCadastrados)
-                    .addComponent(btnProcessosArquivados))
                 .addGap(31, 31, 31)
+                .addComponent(btnProcessosArquivados)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCadastrarAdvogado)
                     .addComponent(btnCadastrarProcesso))
@@ -145,13 +138,16 @@ public class Home extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAdvogadosCadastradosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdvogadosCadastradosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAdvogadosCadastradosActionPerformed
-
     private void btnCadastrarProcessoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarProcessoActionPerformed
-        new CadastroProcesso(banco, usuarios).setVisible(true);
-        dispose();
+        if(!banco.getAdvogados().isEmpty()){
+            new CadastroProcesso(banco, usuarios).setVisible(true);
+            dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Necessário cadastrar advogado antes... clique ok para ser redirecionado ao cadastro");
+            new CadastroAdvogado(banco, usuarios).setVisible(true);
+            dispose();
+        }
+        
     }//GEN-LAST:event_btnCadastrarProcessoActionPerformed
 
     private void btnCadastrarAdvogadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarAdvogadoActionPerformed
@@ -164,8 +160,12 @@ public class Home extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnSairActionPerformed
 
+    private void btnProcessosArquivadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessosArquivadosActionPerformed
+        new RelatorioProcessos(banco, usuarios).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnProcessosArquivadosActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAdvogadosCadastrados;
     private javax.swing.JButton btnCadastrarAdvogado;
     private javax.swing.JButton btnCadastrarProcesso;
     private javax.swing.JButton btnProcessosArquivados;

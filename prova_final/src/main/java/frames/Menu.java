@@ -2,11 +2,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package frames;
+package main.java.frames;
 
-import classes_principais.ListaUsuarios;
-import classes_principais.Sistema;
-import classes_principais.Usuario;
+import main.java.classes_principais.ListaUsuarios;
+import main.java.classes_principais.Sistema;
+import main.java.classes_principais.Usuario;
+import java.awt.BorderLayout;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 
 
@@ -24,6 +30,25 @@ public class Menu extends javax.swing.JFrame {
             this.usuarios = usuarios;
         }
         this.banco = banco;
+        
+        setSize(400, 500);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        ImageIcon imagemOriginal = new ImageIcon(getClass().getClassLoader().getResource("main/java/imagens/goodman-png.png"));
+
+        // Define a largura e altura desejadas para a imagem redimensionada
+        int larguraDesejada = 440;
+        int alturaDesejada = 350;
+
+        // Redimensiona a imagem para as dimensões desejadas
+        Image imagemRedimensionada = imagemOriginal.getImage().getScaledInstance(larguraDesejada, alturaDesejada, Image.SCALE_DEFAULT);
+        ImageIcon imagemRedimensionadaIcon = new ImageIcon(imagemRedimensionada);
+
+        JLabel labelImagem = new JLabel(imagemRedimensionadaIcon);
+        setLayout(new BorderLayout());
+        getContentPane().add(labelImagem, BorderLayout.CENTER);
+        getContentPane().setBackground(new java.awt.Color(0, 0, 0, 0));
+        setContentPane(labelImagem);
         initComponents();
     }
 
@@ -69,7 +94,7 @@ public class Menu extends javax.swing.JFrame {
         });
 
         jButton1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jButton1.setText("SAIR E SALVAR");
+        jButton1.setText("SAIR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -81,32 +106,30 @@ public class Menu extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCadastro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(43, 43, 43))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(194, Short.MAX_VALUE)
-                .addComponent(lblMenu)
-                .addGap(188, 188, 188))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblMenu)
+                        .addGap(188, 188, 188))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+                            .addComponent(btnCadastro, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(25, 25, 25))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(93, 93, 93)
-                        .addComponent(btnCadastro)
-                        .addGap(35, 35, 35)
-                        .addComponent(btnLogin)
-                        .addGap(37, 37, 37)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(lblMenu)))
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addComponent(lblMenu)
+                .addGap(26, 26, 26)
+                .addComponent(btnCadastro)
+                .addGap(32, 32, 32)
+                .addComponent(btnLogin)
+                .addGap(34, 34, 34)
+                .addComponent(jButton1)
+                .addContainerGap(117, Short.MAX_VALUE))
         );
 
         pack();
@@ -128,9 +151,12 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCadastroActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        banco.writingFileAdvogados();
-        banco.writingFileProcessos();
-        dispose();
+        if(JOptionPane.showConfirmDialog(null, "Realmente deseja sair do programa?", "Saindo do app",
+                JOptionPane.YES_NO_OPTION,
+                           JOptionPane.WARNING_MESSAGE) == 0){
+            dispose();
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

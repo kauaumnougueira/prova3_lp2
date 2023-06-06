@@ -1,5 +1,5 @@
 
-package classes_principais;
+package main.java.classes_principais;
 
 public class Advogado {
     private int id;

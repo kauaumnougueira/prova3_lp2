@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package classes_principais;
+package main.java.classes_principais;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -52,7 +52,7 @@ public class Sistema {
         }
         return null;
     }
-
+/*
     //funções de arquivo
     public void writingFileAdvogados(){
         File file = new File(pathadv);
@@ -69,6 +69,7 @@ public class Sistema {
                 bw.write(escrever.getCodigo()+"\n");
                 bw.write("F##########\n");
             }
+            this.advogados.clear();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -90,13 +91,10 @@ public class Sistema {
                 bw.write(escrever.getData()+"\n");
                 bw.write(escrever.getObjetivo()+"\n");
                 bw.write(escrever.getDescricao()+"\n");
-                bw.write("Advogados participantes:\n");
-                ArrayList<Advogado> advogadosEscrever = escrever.getAdvogados();
-                for(int j = 0; j < advogadosEscrever.size(); j++){
-                    Advogado advogadoEscrever = getAdvogadoLista(j);
-                    bw.write(advogadoEscrever.getNome()+"\n");
-                    bw.write(advogadoEscrever.getCodigo()+"\n");
-                }
+                bw.write("Advogado participante:\n");
+                Advogado advogadoEscrever = escrever.getAdvogado();
+                bw.write(advogadoEscrever.getNome()+"\n");
+                bw.write(advogadoEscrever.getCodigo()+"\n");
                 bw.write("F##########\n");
             }
         } catch (IOException e) {
@@ -122,38 +120,16 @@ public class Sistema {
                         int idI = Integer.parseInt(id);
                         double valorD = Double.parseDouble(valor);
                         
-                        Processo ler = new Processo(tipo, idI, valorD, data, objetivo, descricao);
                         br.readLine(); //nada util
-                        while(true){
-                            String idA;
-                            String nome;
-                            String codigo;
-                            line = br.readLine();
-                            if(line.equals("F##########")){
-                                break;
-                            }else{
-                               idA = line; 
-                            }
-                            line = br.readLine();
-                            if(line.equals("F##########")){
-                                break;
-                            }else{
-                               nome = line; 
-                            }
-                            line = br.readLine();
-                            if(line.equals("F##########")){
-                                break;
-                            }else{
-                                codigo = line;
-                            }
-                            int idIA = Integer.parseInt(idA);
-                            Advogado advogadoLido = new Advogado(nome, codigo, idIA);
-                            ler.addAdvogado(advogadoLido);
-                        }
+                        String idA = br.readLine();
+                        String nome = br.readLine();
+                        String codigo = br.readLine();
+                    
+                        int idIA = Integer.parseInt(idA);
+                        Advogado advogadoLido = new Advogado(nome, codigo, idIA);
+                        Processo ler = new Processo(tipo, idI, valorD, data, objetivo, descricao, advogadoLido);
                         
-                        addProcesso(ler);
                         line = br.readLine();
-                        
                     }
                 }
                
@@ -166,7 +142,6 @@ public class Sistema {
     public void readingFileAdvogados(){
         try (BufferedReader br = new BufferedReader(new FileReader(pathadv))) {
             String line = br.readLine();
-            
             while(line != null){
                 line = br.readLine();
                 if(line != null){
@@ -185,5 +160,5 @@ public class Sistema {
             System.out.println("Error: " + e.getMessage());
         }
     }
-    
+    */
 }

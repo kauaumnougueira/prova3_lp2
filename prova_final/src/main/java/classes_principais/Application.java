@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package classes_principais;
+package main.java.classes_principais;
 
-import frames.Menu;
+import main.java.frames.Menu;
 
 /**
  *
@@ -17,9 +17,6 @@ public class Application {
         usuarios.addUsuario(admin);
         
         Sistema banco = new Sistema();
-        banco.readingFileProcessos();
-        banco.readingFileAdvogados();
-        
         new Menu(usuarios,banco).setVisible(true);
     }
 }
